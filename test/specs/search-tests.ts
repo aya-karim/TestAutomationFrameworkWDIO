@@ -12,7 +12,7 @@ describe('Tests in Search Page', () => {
             //await SearchPage.waitForSearchInput()
            // console.log(await (await (await SearchPage.sea).shadow$('#top')).isDisplayed())
             // expect( await SearchPage.searchBar().isDisplayed()).toBe();
-            console.log('::DEBUG::', await (await SearchPage.searchBar()).isExisting());
+           // console.log('::DEBUG::', await (await SearchPage.searchBar()).isExisting());
             //await SearchPage.searchWith("SHIRT");
             //await expect(LoginPage.errormsg).toBeExisting();
             //await expect(LoginPage.errormsg).toHaveTextContaining('User should be filled out');

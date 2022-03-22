@@ -1,9 +1,7 @@
 {
-	"folders": [
-		{
-			"name": "WebdriverIOTypescript",
-			"path": "."
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "."
+        }
+    ]
 }
