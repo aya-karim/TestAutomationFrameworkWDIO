@@ -59,3 +59,6 @@ typings/
 
 # WebdriverIO files
 errorShots
+
+/allure-results
+/allure-report
