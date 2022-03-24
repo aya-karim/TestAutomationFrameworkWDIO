@@ -170,10 +170,7 @@ export const config: WebdriverIO.Config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
-
-
-    
+    reporters: ['spec',['allure', {outputDir: 'allure-results'}]],    
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
@@ -275,11 +272,16 @@ export const config: WebdriverIO.Config = {
      * @param {Boolean} result.passed    true if test has passed, otherwise false
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    afterTest: async function(test, context, { error, result, duration, passed, retries }) {
-        if (!passed) {
-            await browser.takeScreenshot();
+     afterTest: function (
+        test,
+        context,
+        { error, result, duration, passed, retries }
+      ) {
+        // take a screenshot anytime a test fails and throws an error
+        if (passed) {
+          browser.takeScreenshot(); 
         }
-    },
+      },
 
 
     /**
