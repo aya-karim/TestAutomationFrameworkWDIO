@@ -1,21 +1,27 @@
-import LoginPage from  '../pageobjects/login.page';
-import SecurePage from '../pageobjects/search.page';
+import LoginPage from "../pageobjects/login.page";
 
-describe('Log in from LogIn page', () => {
-    it('should login with Invalid credentials', async () => {
-        await LoginPage.openLogInPage();
-        await LoginPage.login('test@test.com', 'ThisIs@T3st');
-        await expect(LoginPage.errormsg).toBeExisting();
-        await expect(LoginPage.errormsg).toHaveTextContaining('Your Login Name or Password is invalid');
-    });
-});
+describe("Login from LogIn page", () => {
+  before(async () => {
+    await LoginPage.open();
+    await LoginPage.iframe();
+    await LoginPage.goToLoginPage();
+  });
 
-describe('Log in from LogIn page', () => {
-    it('should login with empty credentials', async () => {
-        await LoginPage.openLogInPage();
-        await LoginPage.login('', '');
-        await LoginPage.clickOnSubmitBtn();
-        await expect(LoginPage.errormsg).toBeExisting();
-        await expect(LoginPage.errormsg).toHaveTextContaining('User should be filled out');
-    });
+  it("Login with Invalid credentials", async () => {
+    await LoginPage.SendLogInCredentials("test@test.com", "ThisIs@T3st");
+    await expect(LoginPage.errormsg).toBeExisting();
+    await expect(LoginPage.errormsg).toHaveTextContaining(
+      "Invalid login or password."
+    );
+  });
+
+  it("Login with empty credentials", async () => {
+    await LoginPage.SendLogInCredentials("", "");
+    await expect(LoginPage.missingEmailMsg).toHaveTextContaining(
+      "This is a required field."
+    );
+    await expect(LoginPage.missingPasswordMsg).toHaveTextContaining(
+      "This is a required field."
+    );
+  });
 });
