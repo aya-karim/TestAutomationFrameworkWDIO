@@ -7,6 +7,7 @@
         "tests": "npx wdio run test/wdio.conf.ts",
         "loginTests": "npx wdio run test/wdio.conf.ts --spec logIn-tests.ts",
         "searchTests": "npx wdio run test/wdio.conf.ts --spec search-tests.ts",
+        "salesTests": "npx wdio run test/wdio.conf.ts --spec sales-tests.ts",
         "allureReport": "allure generate allure-results/ --clean && allure open"
     },
     "author": "",

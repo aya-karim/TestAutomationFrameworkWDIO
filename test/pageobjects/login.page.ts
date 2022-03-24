@@ -1,50 +1,60 @@
-import { ChainablePromiseElement } from 'webdriverio';
-
-import Page from './page';
+import Page from "./page";
 
 /**
  * sub page containing specific selectors and methods for a specific page
  */
 class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
-    public get inputUsername () {
-        return $('[name="username"]');
-    }
+  /**
+   * define selectors using getter methods
+   */
+  public get account() {
+    return $('a[href="http://main.ctqatest.info/ecom/customer/account/"]');
+  }
 
-    public get inputPassword () {
-        return $('[name="password"]');
-    }
+  public get LogInBtn() {
+    return $(
+      'a[href="http://main.ctqatest.info/ecom/customer/account/login/"]'
+    );
+  }
 
-    public get btnSubmit () {
-        return $('#loginBtn');
-    }
+  public get inputUsername() {
+    return $("#email");
+  }
 
-    public get errormsg (){
-        return $('#error_text');
-    }
+  public get inputPassword() {
+    return $("#pass");
+  }
 
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
-    public async login (username: string, password: string) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
-    }
+  public get btnSubmit() {
+    return $("#send2");
+  }
 
-    /**
-     * overwrite specific options to adapt it to page object
-     */
-    public openLogInPage () {
-        return super.open('login.php');
-    }
+  public get errormsg() {
+    return $(".error-msg");
+  }
 
-    public async clickOnSubmitBtn(){
-        await this.btnSubmit.click();
-    }
- 
+  public get missingEmailMsg() {
+    return $("#advice-required-entry-email");
+  }
+
+  public get missingPasswordMsg() {
+    return $("#advice-required-entry-pass");
+  }
+  /**
+   * Methods
+   */
+  public async SendLogInCredentials(username: string, password: string) {
+    await this.inputUsername.setValue(username);
+    await this.inputPassword.setValue(password);
+    await this.btnSubmit.click();
+  }
+  public async goToLoginPage() {
+    await this.account.click();
+    await this.LogInBtn.click();
+  }
+
+  public async clickOnSubmitBtn() {
+    await this.btnSubmit.click();
+  }
 }
 export default new LoginPage();
