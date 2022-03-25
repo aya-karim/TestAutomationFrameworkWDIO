@@ -88,7 +88,7 @@ export const config: WebdriverIO.Config = {
         'goog:chromeOptions': {
             args: [
                 '--no-sandbox',
-               //  '--headless',
+                '--headless',
                 '--disable-gpu',
                 '--disable-dev-shm-usage',
                 '--disable-setuid-sandbox',
@@ -272,14 +272,14 @@ export const config: WebdriverIO.Config = {
      * @param {Boolean} result.passed    true if test has passed, otherwise false
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-     afterTest: function (
+     afterTest: async function (
         test,
         context,
         { error, result, duration, passed, retries }
       ) {
         // take a screenshot anytime a test fails and throws an error
         if (passed) {
-          browser.takeScreenshot(); 
+            await browser.takeScreenshot(); 
         }
       },
 
