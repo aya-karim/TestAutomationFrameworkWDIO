@@ -46,3 +46,23 @@ Uncomment "Headless" in wdio.conf.js
 
 
 ![In capabilities](https://raw.githubusercontent.com/aya-karim/TestAutomationFrameworkWDIO/master/Headless%20Screenshot.png)
+
+
+## Docker File
+
+to build an image
+```bash
+docker build . -t ctqa:v1
+```
+
+to run the image
+
+```bash
+docker run -it ctqa:v1
+```
+
+to pull from docker container direclty
+
+```bash
+docker pull atkarim/ctqa
+```
