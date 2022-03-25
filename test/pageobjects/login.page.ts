@@ -40,14 +40,13 @@ class LoginPage extends Page {
   public get missingPasswordMsg() {
     return $("#advice-required-entry-pass");
   }
-  /**
-   * Methods
-   */
-  public async SendLogInCredentials(username: string, password: string) {
+
+  public async sendLogInCredentials(username: string, password: string) {
     await this.inputUsername.setValue(username);
     await this.inputPassword.setValue(password);
     await this.btnSubmit.click();
   }
+
   public async goToLoginPage() {
     await this.account.click();
     await this.LogInBtn.click();

@@ -3,7 +3,7 @@ import Page from "./page";
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class productListPage extends Page {
+class ProductListPage extends Page {
   /**
    * define selectors using getter methods
    */
@@ -15,39 +15,39 @@ class productListPage extends Page {
     return $("(//select[@class='required-entry super-attribute-select'])[2]");
   }
 
-  public get AddToCartBtn() {
+  public get addToCartBtn() {
     return $(".add-to-cart-buttons button");
   }
 
-  public get cartsuccessMsg() {
+  public get cartSuccessMsg() {
     return $(".success-msg span");
+  }
+
+  public getProduct(productName: string) {
+    return $("//div[@class='product-info']//a[@title='" + productName + "']");
   }
 
   /*
    * Methods
    */
-  public async selectProduct(name: string) {
-    return (
-      await $("//div[@class='product-info']//a[@title='" + name + "']")
-    ).click();
+  public async selectProduct(productName: string) {
+    await this.getProduct(productName).click();
   }
 
-  public async selectColorfromDropDown(color: string) {
-    await this.colorDropDown.selectByVisibleText(color);
+  public async selectColorfromDropDown(productColor: string) {
+    await this.colorDropDown.selectByVisibleText(productColor);
   }
 
-  public async selectSizefromDropDown(size: string) {
-    await this.sizeDropDown.selectByVisibleText(size);
+  public async selectSizefromDropDown(productSize: string) {
+    await this.sizeDropDown.selectByVisibleText(productSize);
   }
 
-  public async AddtoCart() {
-    await this.AddToCartBtn.click();
+  public async addToCart() {
+    await this.addToCartBtn.click();
   }
 
-  public async VerifyItemIsAddedToCart(item: string) {
-    await expect(this.cartsuccessMsg).toHaveTextContaining(
-      item + " was added to your shopping cart."
-    );
+  public async getCartSuccessMessage() {
+    return (await this.cartSuccessMsg).getText();
   }
 }
-export default new productListPage();
+export default new ProductListPage();

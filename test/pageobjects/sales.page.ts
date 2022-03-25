@@ -16,18 +16,17 @@ class SalePage extends Page {
       'a[href="http://main.ctqatest.info/ecom/sale.html?price=100-200"]'
     );
   }
-  /*
-   * Methods
-   */
-  public async priceListText() {
+
+  public async getPriceListText(): Promise<number[]> {
+    let prices: number[] = [];
     await this.priceList.forEach(async function (result) {
       await result.waitForExist();
       let price = await result.getText();
       price = price.substring(1);
       let numericPrice = Number(price);
-      await expect(numericPrice).toBeGreaterThanOrEqual(100);
-      await expect(numericPrice).toBeLessThanOrEqual(200);
+      prices.push(numericPrice);
     });
+    return prices;
   }
 
   public async clickOnPriceFilter() {

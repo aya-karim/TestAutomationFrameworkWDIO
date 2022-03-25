@@ -24,14 +24,12 @@ class SearchPage extends Page {
       '>>>span[data-qa-value="This is a demo website for testing purpose"]'
     );
   }
-  /*
-   * Methods
-   */
+
   public async openAllSalesMenu() {
     await this.saleMenu.click();
   }
 
-  public async getinfoText() {
+  public async getInfoText() {
     return await this.infoText.getText();
   }
 
@@ -39,14 +37,6 @@ class SearchPage extends Page {
     await expect(this.searchBar).toExist();
     await this.searchBar.setValue(product);
     await this.searchBtn.click();
-  }
-
-  public async waitForSearchInput() {
-    this.searchBar.isDisplayed();
-    await browser.waitUntil(async () => this.searchBar.isDisplayed(), {
-      timeout: 30000,
-      timeoutMsg: "expected serachbar to be visible before 30s",
-    });
   }
 }
 
