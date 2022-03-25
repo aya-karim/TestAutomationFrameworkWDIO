@@ -5,9 +5,9 @@
     "main": "index.js",
     "scripts": {
         "tests": "npx wdio run test/wdio.conf.ts",
-        "loginTests": "npx wdio run test/wdio.conf.ts --spec logIn-tests.ts",
-        "searchTests": "npx wdio run test/wdio.conf.ts --spec search-tests.ts",
-        "salesTests": "npx wdio run test/wdio.conf.ts --spec sales-tests.ts",
+        "loginTests": "npx wdio run test/wdio.conf.ts --spec logIn.spec.ts",
+        "searchTests": "npx wdio run test/wdio.conf.ts --spec search.spec.ts",
+        "salesTests": "npx wdio run test/wdio.conf.ts --spec sales.spec.ts",
         "allureReport": "allure generate allure-results/ --clean && allure open"
     },
     "author": "",
